@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sinuca Online</title>
+<style>
+body {background:#0d0d0d; margin:0; display:flex; justify-content:center; align-items:center; height:100vh;}
+#lobby {color:white; text-align:center;}
+#lobby button {padding:15px; font-size:18px; margin:10px; background:#2196f3; border:none; color:white; border-radius:8px;}
+canvas {background:#1b5e20; border:10px solid #3e2723; border-radius:20px;}
+</style>
+</head>
+<body>
+
+<div id="lobby">
+<h1>SINUCA ONLINE</h1>
+<button onclick="createRoom()">1. CRIAR SALA</button><br>
+<input id="roomInput" placeholder="DIGITE O CODIGO" style="padding:10px; text-align:center;">
+<button onclick="joinRoom()">2. ENTRAR NA SALA</button>
+<div id="codigo" style="font-size:30px; color:yellow; margin-top:20px;"></div>
+</div>
+
+<canvas id="field" width="400" height="700" style="display:none;"></canvas>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+// SUAS CHAVES JÁ ESTÃO AQUI
+const firebaseConfig = {
+  apiKey: "AIzaSyClWy6B1qT33MOlt_LLazD05gSI0SOrF5I",
+  authDomain: "sinuca-52c6a.firebaseapp.com",
+  databaseURL: "https://sinuca-52c6a-default-rtdb.firebaseio.com",
+  projectId: "sinuca-52c6a",
+  storageBucket: "sinuca-52c6a.firebasestorage.app",
+  messagingSenderId: "311009485373",
+  appId: "1:311009485373:web:d098b8cfc0da419fdcc054",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+let roomId = "";
+
+window.createRoom = function() {
+    roomId = Math.random().toString(36).substring(2, 6).toUpperCase();
+    document.getElementById('codigo').innerText = "CODIGO: " + roomId;
+    set(ref(db, 'rooms/' + roomId), {msg: "Sala criada"});
+    alert("Manda esse código pro seu amigo: " + roomId);
+}
+window.joinRoom = function() {
+    roomId = document.getElementById('roomInput').value.toUpperCase();
+    alert("Entrou na sala: " + roomId);
+    document.getElementById('lobby').style.display = 'none';
+    document.getElementById('field').style.display = 'block';
+}
+</script>
+</body>
+</html>
