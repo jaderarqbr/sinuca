@@ -90,12 +90,24 @@ function resetMatch(){msgBox.style.display='none';scorePlayer=0;scoreAi=0;curren
 
 window.createRoom=function(){roomId=Math.random().toString(36).substring(2,6).toUpperCase();myPlayer='player1';document.getElementById('room-code').innerText=roomId;document.getElementById('room-display').style.display='block';set(ref(db,'rooms/'+roomId),{player1:true,player2:false,state:{}});listenRoom()}
 window.joinRoom=function(){roomId=document.getElementById('roomInput').value.toUpperCase();if(!roomId)return alert("Digite o código");myPlayer='player2';update(ref(db,'rooms/'+roomId),{player2:true});listenRoom()}
-function listenRoom(){document.getElementById('lobby').style.display='none';document.getElementById('game-container').style.display='block';resizeCanvas();initPositions();updateHUD();const roomRef=ref(db,'rooms/'+roomId);onValue(roomRef,(snapshot)=>{const data=snapshot.val();if(data&&data.state){loadState(data.state)}if(data&&data.player1&&data.player2){document.getElementById('room-display').style.display='none'}})}
+
+function listenRoom(){
+    const roomRef=ref(db,'rooms/'+roomId);
+    onValue(roomRef,(snapshot)=>{
+        const data=snapshot.val();
+        if(data&&data.state){loadState(data.state)}
+        if(data&&data.player1&&data.player2){
+            document.getElementById('lobby').style.display='none';
+            document.getElementById('game-container').style.display='block';
+            resizeCanvas();initPositions();updateHUD();
+        }
+    })
+}
 function updateFirebaseState(){const state={balls:balls.map(b=>({x:b.x,y:b.y,vx:b.vx,vy:b.vy,type:b.type,inPocket:b.inPocket})),scorePlayer,scoreAi,currentTurn,isMoving};set(ref(db,'rooms/'+roomId+'/state'),state)}
 function loadState(state){if(!state.balls)return;scorePlayer=state.scorePlayer;scoreAi=state.scoreAi;currentTurn=state.currentTurn;isMoving=state.isMoving;for(let i=0;i<balls.length;i++){Object.assign(balls[i],state.balls[i])}updateHUD()}
 
-function loop(){ctx.clearRect(0,0,width,height);drawTable();for(let b of balls)b.update();resolveCollisions();checkPockets();checkMovementState();for(let b of balls)b.draw();drawAimArrow();requestAnimationFrame(loop)}
-window.addEventListener('resize',()=>{resizeCanvas()});loop();
+function loop(){if(document.getElementById('game-container').style.display==='block'){ctx.clearRect(0,0,width,height);drawTable();for(let b of balls)b.update();resolveCollisions();checkPockets();checkMovementState();for(let b of balls)b.draw();drawAimArrow()}requestAnimationFrame(loop)}
+window.addEventListener('resize',()=>{if(document.getElementById('game-container').style.display==='block')resizeCanvas()});loop();
 </script>
 </body>
 </html>
