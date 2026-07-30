@@ -14,4 +14,88 @@ canvas{width:100%;height:100%;display:block}
 #lobby button{background:#2196f3;border:none;padding:12px 24px;color:white;font-weight:bold;border-radius:8px;cursor:pointer;margin:8px;font-size:15px;width:200px}
 #room-code{font-size:32px;color:#ffeb3b;letter-spacing:4px}
 #hud{position:absolute;top:15px;width:100%;display:flex;justify-content:space-around;color:white;font-weight:800;font-size:16px;text-shadow:2px 2px 4px rgba(0,0,0,.8);z-index:20;pointer-events:none}
-#turn-info{position:absolute;top:45px;width:100%;text-align:center;color:#ffeb3b;font-weight:bold;font-size:13px;text-shadow:2px 2px 4px black;z-index
+#turn-info{position:absolute;top:45px;width:100%;text-align:center;color:#ffeb3b;font-weight:bold;font-size:13px;text-shadow:2px 2px 4px black;z-index:20;pointer-events:none;text-transform:uppercase}
+#foul-banner{position:absolute;top:40%;width:100%;text-align:center;background:rgba(244,67,54,.9);color:white;font-weight:bold;font-size:15px;padding:10px 0;display:none;z-index:30;pointer-events:none;text-transform:uppercase}
+#msg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;background:rgba(10,10,10,.95);padding:25px;border-radius:15px;text-align:center;display:none;z-index:100;border:2px solid #2196f3;min-width:260px}
+.game-btn{background:#2196f3;border:none;padding:12px 24px;color:white;font-weight:bold;border-radius:8px;cursor:pointer;margin-top:15px;font-size:15px}
+</style>
+</head>
+<body>
+
+<div id="lobby">
+<h1>SINUCA ONLINE</h1>
+<button onclick="createRoom()">Criar Sala</button>
+<div style="margin:15px 0;">ou</div>
+<input type="text" id="roomInput" placeholder="CÓDIGO DA SALA" maxlength="4">
+<button onclick="joinRoom()">Entrar na Sala</button>
+<div id="room-display" style="display:none;margin-top:20px;">Código da Sala: <div id="room-code"></div>Aguardando jogador 2...</div>
+</div>
+
+<div id="game-container" style="display:none;">
+<div id="hud"><div style="color:#ff7043;">LARANJA: <span id="score-player">0</span>/4</div><div style="color:#29b6f6;">AZUL: <span id="score-ai">0</span>/4</div></div>
+<div id="turn-info">AGUARDANDO...</div>
+<div id="foul-banner">FALTA! BOLA BRANCA ENCAÇAPADA (-1 PONTO)</div>
+<div id="msg"><h1 id="status-title" style="margin:0 0 10px 0;">FIM DE JOGO</h1><p id="status-desc" style="margin:5px 0;"></p><button class="game-btn" onclick="location.reload()">Sair da Sala</button></div>
+<canvas id="field"></canvas>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyClWy6B1qT33MOlt_LLazD05gSI0SOrF5I",
+  authDomain: "sinuca-52c6a.firebaseapp.com",
+  databaseURL: "https://sinuca-52c6a-default-rtdb.firebaseio.com",
+  projectId: "sinuca-52c6a",
+  storageBucket: "sinuca-52c6a.firebasestorage.app",
+  messagingSenderId: "311009485373",
+  appId: "1:311009485373:web:d098b8cfc0da419fdcc054",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const canvas = document.getElementById('field'); const ctx = canvas.getContext('2d');
+const scorePlayerEl = document.getElementById('score-player'); const scoreAiEl = document.getElementById('score-ai');
+const turnInfoEl = document.getElementById('turn-info'); const foulBanner = document.getElementById('foul-banner'); const msgBox = document.getElementById('msg');
+
+let width,height,FRICTION=0.985,BALL_RADIUS=10,POCKET_RADIUS=18;
+let scorePlayer=0,scoreAi=0,currentTurn='player1',isMoving=false,selectedBall=null,dragStart=null,dragCurrent=null,firstBallHit=null;
+let balls=[],pockets=[],cueBall=null,myPlayer='player1',roomId='';
+
+class Ball{constructor(x,y,type,color){this.x=x;this.y=y;this.vx=0;this.vy=0;this.radius=BALL_RADIUS;this.type=type;this.color=color;this.inPocket=false}
+update(){if(this.inPocket)return;this.x+=this.vx;this.y+=this.vy;this.vx*=FRICTION;this.vy*=FRICTION;if(Math.abs(this.vx)<0.02)this.vx=0;if(Math.abs(this.vy)<0.02)this.vy=0;const m=15;if(this.x-this.radius<m){this.x=m+this.radius;this.vx*=-0.92}if(this.x+this.radius>width-m){this.x=width-m-this.radius;this.vx*=-0.92}if(this.y-this.radius<m){this.y=m+this.radius;this.vy*=-0.92}if(this.y+this.radius>height-m){this.y=height-m-this.radius;this.vy*=-0.92}}
+draw(){if(this.inPocket)return;ctx.beginPath();ctx.arc(this.x+2,this.y+2,this.radius,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,.35)';ctx.fill();ctx.beginPath();ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);ctx.fillStyle=this.color;ctx.fill();ctx.strokeStyle='rgba(0,0,0,.5)';ctx.lineWidth=1;ctx.stroke();if(this.type==='cue'){ctx.beginPath();ctx.arc(this.x+3,this.y+1,2,0,Math.PI*2);ctx.fillStyle='#111';ctx.fill()}ctx.beginPath();ctx.arc(this.x-this.radius*.3,this.y-this.radius*.3,this.radius*.35,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,.45)';ctx.fill()}}
+
+function resizeCanvas(){const c=document.getElementById('game-container');width=c.clientWidth;height=c.clientHeight;canvas.width=width;canvas.height=height;initPockets()}
+function initPockets(){const m=12;pockets=[{x:m+4,y:m+4},{x:m+4,y:height/2},{x:m+4,y:height-m-4},{x:width-m-4,y:m+4},{x:width-m-4,y:height/2},{x:width-m-4,y:height-m-4}]}
+function initPositions(){balls=[];cueBall=new Ball(width/2,height*.65,'cue','#ffffff');balls.push(cueBall);balls.push(new Ball(width*.42,height*.06,'target_player1','#ff7043'));balls.push(new Ball(width*.58,height*.06,'target_player1','#ff7043'));balls.push(new Ball(width*.16,height*.37,'target_player1','#ff7043'));balls.push(new Ball(width*.84,height*.37,'target_player1','#ff7043'));balls.push(new Ball(width*.16,height*.60,'target_player2','#29b6f6'));balls.push(new Ball(width*.84,height*.60,'target_player2','#29b6f6'));balls.push(new Ball(width*.43,height*.94,'target_player2','#29b6f6'));balls.push(new Ball(width*.57,height*.94,'target_player2','#29b6f6'))}
+function drawTable(){ctx.fillStyle='#1b5e20';ctx.fillRect(0,0,width,height);ctx.strokeStyle='rgba(255,255,255,.08)';ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(15,height/2);ctx.lineTo(width-15,height/2);ctx.stroke();ctx.setLineDash([]);for(let p of pockets){ctx.beginPath();ctx.arc(p.x,p.y,POCKET_RADIUS,0,Math.PI*2);ctx.fillStyle='#050505';ctx.fill();ctx.strokeStyle='#2d2d2d';ctx.lineWidth=3;ctx.stroke()}ctx.strokeStyle='#2e7d32';ctx.lineWidth=6;ctx.strokeRect(10,10,width-20,height-20)}
+function resolveCollisions(){const a=balls.filter(b=>!b.inPocket);for(let i=0;i<a.length;i++)for(let j=i+1;j<a.length;j++){let b1=a[i],b2=a[j];let dx=b2.x-b1.x,dy=b2.y-b1.y,dist=Math.hypot(dx,dy),minDist=b1.radius+b2.radius;if(dist<minDist){if(isMoving&&!firstBallHit){if(b1.type==='cue')firstBallHit=b2;else if(b2.type==='cue')firstBallHit=b1}let angle=Math.atan2(dy,dx),targetX=b1.x+Math.cos(angle)*minDist,targetY=b1.y+Math.sin(angle)*minDist,ax=(targetX-b2.x)*.5,ay=(targetY-b2.y)*.5;b1.x-=ax;b1.y-=ay;b2.x+=ax;b2.y+=ay;let nx=dx/dist,ny=dy/dist,kx=b1.vx-b2.vx,ky=b1.vy-b2.vy,p=2*(nx*kx+ny*ky)/2;b1.vx-=p*nx;b1.vy-=p*ny;b2.vx+=p*nx;b2.vy+=p*ny}}}
+function checkPockets(){for(let b of balls){if(b.inPocket)continue;for(let p of pockets){let dist=Math.hypot(p.x-b.x,p.y-b.y);if(dist<POCKET_RADIUS){b.inPocket=true;b.vx=0;b.vy=0;handleBallEncacapada(b);break}}}}
+function handleBallEncacapada(ball){if(ball.type==='cue'){if(currentTurn==='player1'){if(scorePlayer>0)scorePlayer--}else{if(scoreAi>0)scoreAi--}showFoulBanner("FALTA! BOLA BRANCA ENCAÇAPADA (-1 PONTO)");setTimeout(()=>{ball.x=width/2;ball.y=height/2;ball.vx=0;ball.vy=0;ball.inPocket=false},800);updateFirebaseState();return}if(ball.type==='target_player1'){scorePlayer++}else if(ball.type==='target_player2'){scoreAi++}updateFirebaseState();checkWinCondition()}
+function checkMovementState(){const a=balls.filter(b=>!b.inPocket);let moving=false;for(let b of a){if(Math.abs(b.vx)>0||Math.abs(b.vy)>0){moving=true;break}}if(isMoving&&!moving){isMoving=false;switchTurn();updateFirebaseState()}}
+function showFoulBanner(msg){foulBanner.innerText=msg;foulBanner.style.display='block';setTimeout(()=>{foulBanner.style.display='none'},2000)}
+function switchTurn(){currentTurn=currentTurn==='player1'?'player2':'player1';firstBallHit=null;updateHUD()}
+function updateHUD(){scorePlayerEl.innerText=scorePlayer;scoreAiEl.innerText=scoreAi;let myTurn=currentTurn===myPlayer;turnInfoEl.innerText=myTurn?"SUA VEZ (MIRA NAS SUAS BOLAS)":"VEZ DO ADVERSÁRIO...";turnInfoEl.style.color=myPlayer==='player1'?"#ff7043":"#29b6f6"}
+function checkWinCondition(){if(scorePlayer>=4){showEndGame("LARANJA VENCEU! 🎉","#ff7043");return true}else if(scoreAi>=4){showEndGame("AZUL VENCEU! 💀","#29b6f6");return true}return false}
+function showEndGame(title,color){document.getElementById('status-title').innerText=title;document.getElementById('status-title').style.color=color;document.getElementById('status-desc').innerText=`Placar Final: Laranja ${scorePlayer} x ${scoreAi} Azul`;msgBox.style.display='block'}
+function getPointerPos(e){const rect=canvas.getBoundingClientRect();const clientX=e.touches?e.touches[0].clientX:e.clientX;const clientY=e.touches?e.touches[0].clientY:e.clientY;return{x:clientX-rect.left,y:clientY-rect.top}}
+canvas.addEventListener('pointerdown',(e)=>{if(currentTurn!==myPlayer||isMoving||cueBall.inPocket)return;const pos=getPointerPos(e);let dist=Math.hypot(pos.x-cueBall.x,pos.y-cueBall.y);if(dist<cueBall.radius+20){selectedBall=cueBall;dragStart={x:cueBall.x,y:cueBall.y};dragCurrent=pos}});
+canvas.addEventListener('pointermove',(e)=>{if(selectedBall&&dragStart){dragCurrent=getPointerPos(e)}});
+canvas.addEventListener('pointerup',()=>{if(selectedBall&&dragStart&&dragCurrent){let dx=dragStart.x-dragCurrent.x,dy=dragStart.y-dragCurrent.y,dist=Math.hypot(dx,dy);if(dist>5){let force=Math.min(dist*.1,14),angle=Math.atan2(dy,dx);selectedBall.vx=Math.cos(angle)*force;selectedBall.vy=Math.sin(angle)*force;firstBallHit=null;isMoving=true;updateFirebaseState()}selectedBall=null;dragStart=null;dragCurrent=null}});
+function drawAimArrow(){if(selectedBall&&dragStart&&dragCurrent){let dx=dragStart.x-dragCurrent.x,dy=dragStart.y-dragCurrent.y,dist=Math.hypot(dx,dy);if(dist<5)return;let angle=Math.atan2(dy,dx),arrowLength=Math.min(dist,110),endX=selectedBall.x+Math.cos(angle)*arrowLength,endY=selectedBall.y+Math.sin(angle)*arrowLength;ctx.beginPath();ctx.moveTo(selectedBall.x,selectedBall.y);ctx.lineTo(endX,endY);ctx.strokeStyle='#ffeb3b';ctx.lineWidth=3.5;ctx.stroke();let headLen=9;ctx.beginPath();ctx.moveTo(endX,endY);ctx.lineTo(endX-headLen*Math.cos(angle-Math.PI/6),endY-headLen*Math.sin(angle-Math.PI/6));ctx.lineTo(endX-headLen*Math.cos(angle+Math.PI/6),endY-headLen*Math.sin(angle+Math.PI/6));ctx.lineTo(endX,endY);ctx.fillStyle='#ffeb3b';ctx.fill()}}
+function resetMatch(){msgBox.style.display='none';scorePlayer=0;scoreAi=0;currentTurn='player1';isMoving=false;firstBallHit=null;initPositions();updateHUD();updateFirebaseState()}
+
+window.createRoom=function(){roomId=Math.random().toString(36).substring(2,6).toUpperCase();myPlayer='player1';document.getElementById('room-code').innerText=roomId;document.getElementById('room-display').style.display='block';set(ref(db,'rooms/'+roomId),{player1:true,player2:false,state:{}});listenRoom()}
+window.joinRoom=function(){roomId=document.getElementById('roomInput').value.toUpperCase();if(!roomId)return alert("Digite o código");myPlayer='player2';update(ref(db,'rooms/'+roomId),{player2:true});listenRoom()}
+function listenRoom(){document.getElementById('lobby').style.display='none';document.getElementById('game-container').style.display='block';resizeCanvas();initPositions();updateHUD();const roomRef=ref(db,'rooms/'+roomId);onValue(roomRef,(snapshot)=>{const data=snapshot.val();if(data&&data.state){loadState(data.state)}if(data&&data.player1&&data.player2){document.getElementById('room-display').style.display='none'}})}
+function updateFirebaseState(){const state={balls:balls.map(b=>({x:b.x,y:b.y,vx:b.vx,vy:b.vy,type:b.type,inPocket:b.inPocket})),scorePlayer,scoreAi,currentTurn,isMoving};set(ref(db,'rooms/'+roomId+'/state'),state)}
+function loadState(state){if(!state.balls)return;scorePlayer=state.scorePlayer;scoreAi=state.scoreAi;currentTurn=state.currentTurn;isMoving=state.isMoving;for(let i=0;i<balls.length;i++){Object.assign(balls[i],state.balls[i])}updateHUD()}
+
+function loop(){ctx.clearRect(0,0,width,height);drawTable();for(let b of balls)b.update();resolveCollisions();checkPockets();checkMovementState();for(let b of balls)b.draw();drawAimArrow();requestAnimationFrame(loop)}
+window.addEventListener('resize',()=>{resizeCanvas()});loop();
+</script>
+</body>
+</html>
