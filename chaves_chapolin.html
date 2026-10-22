@@ -1,0 +1,341 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaves & Chapolin - A Magia de Roberto Gómez Bolaños!</title>
+    <style>
+        /* CSS Vintage Estilizado - Anos 90 Elegante (Tema Chaves / Chapolin) */
+        body {
+            background-color: #1a120b;
+            background-image: radial-gradient(#3a2613 1px, transparent 0);
+            background-size: 16px 16px;
+            color: #d1d5db;
+            font-family: "Times New Roman", Times, serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Container central estilo FrontPage */
+        .main-table {
+            width: 100%;
+            max-width: 950px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #120c07;
+            border: 3px double #eab308;
+            box-shadow: 0 0 18px rgba(234, 179, 8, 0.25);
+        }
+
+        /* Cabeçalho */
+        .header-cell {
+            background: linear-gradient(180deg, #3d0c0c 0%, #120505 100%);
+            border-bottom: 2px solid #eab308;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header-title {
+            color: #fef08a;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 26px;
+            font-weight: bold;
+            text-shadow: 2px 2px #000, 0 0 10px rgba(239, 68, 68, 0.6);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .marquee-container {
+            background-color: #000;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            color: #facc15;
+            font-family: "Courier New", monospace;
+            font-size: 14px;
+            padding: 4px;
+        }
+
+        /* Layout de colunas */
+        .nav-cell {
+            width: 220px;
+            vertical-align: top;
+            background-color: #1a1008;
+            border-right: 2px solid #331d0b;
+            padding: 15px;
+        }
+
+        .content-cell {
+            vertical-align: top;
+            padding: 25px;
+            background-color: #140b05;
+        }
+
+        /* Menu de Navegação Esquerdo */
+        .menu-title {
+            color: #eab308;
+            font-family: "Courier New", monospace;
+            font-size: 16px;
+            border-bottom: 1px dashed #eab308;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-list a {
+            color: #93c5fd;
+            text-decoration: none;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            transition: color 0.2s;
+        }
+
+        .nav-list a:hover {
+            color: #ffff00;
+            text-decoration: underline;
+        }
+
+        .pokeball-bullet {
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+        }
+
+        /* Estilos da Seção Chaves e Chapolin */
+        .section-title {
+            color: #facc15;
+            font-family: "Courier New", monospace;
+            font-size: 20px;
+            border-bottom: 2px solid #eab308;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subsection-title {
+            color: #eab308;
+            font-family: "Courier New", monospace;
+            font-size: 17px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            border-left: 3px solid #eab308;
+            padding-left: 8px;
+        }
+
+        .section-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #e5e7eb;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            border: 1px solid #451a0e;
+            background-color: #210c08;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #ef4444;
+        }
+
+        /* Estilos de Imagens Diagramadas */
+        .image-banner {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-banner img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #eab308;
+            box-shadow: 0 0 12px rgba(0,0,0,0.8);
+            background-color: #000;
+        }
+
+        .float-img-right {
+            float: right;
+            margin: 0 0 15px 15px;
+            max-width: 230px;
+            border: 2px solid #eab308;
+            box-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+
+        .float-img-left {
+            float: left;
+            margin: 0 15px 15px 0;
+            max-width: 230px;
+            border: 2px solid #eab308;
+            box-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Rodapé */
+        .footer-cell {
+            background-color: #0a0502;
+            border-top: 2px solid #331d0b;
+            text-align: center;
+            padding: 15px;
+            font-size: 13px;
+            color: #9ca3af;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer-cell a {
+            color: #eab308;
+        }
+    </style>
+</head>
+<body>
+
+    <table class="main-table">
+        <!-- CABEÇALHO -->
+        <tr>
+            <td colspan="2" class="header-cell">
+                <h1 class="header-title">*** CHAVES & CHAPOLIN COLORADO ***</h1>
+            </td>
+        </tr>
+
+        <!-- MARQUEE -->
+        <tr>
+            <td colspan="2" class="marquee-container">
+                <marquee scrollamount="4" behavior="scroll" direction="left">
+                    Não contavam com minha astúcia! Descubra a mente genia de Chespirito, a Televisa, os quadrinhos, desenhos e a incrível jornada dos games de NES, SNES ao Mega Drive!
+                </marquee>
+            </td>
+        </tr>
+
+        <!-- CORPO PRINCIPAL -->
+        <tr>
+            <!-- MENU LATERAL ESQUERDO -->
+            <td class="nav-cell">
+                <div class="menu-title">Navegação</div>
+                <ul class="nav-list">
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="index.html">Página Inicial</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="pokemon.html">Pokémon</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="cdz.html">Cavaleiros do Zodíaco</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="dragonball.html">Dragon Ball</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="chaves_chapolin.html"><b>Chaves e Chapolin</b></a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="anarquia.html">Anarquia</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="hacker.html">Hacker</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="downloads.html">Downloads</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="emuladores.html">Emuladores</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="roms.html">Roms</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="detonados.html">Detonados</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="codigos_fonte.html">Códigos Fonte</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="delphi.html">Delphi</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="ia.html">Inteligência Artificial</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="fotos.html">Fotos</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="videos.html">Vídeos</a></li>
+                </ul>
+            </td>
+
+            <!-- CONTEÚDO DA PÁGINA CHAVES E CHAPOLIN -->
+            <td class="content-cell">
+
+                <!-- DIAGRAMAÇÃO 1: Imagem do Grupo / Elenco (8.jpg) no Topo -->
+                <div class="image-banner">
+                    <img src="8.jpg" alt="A Turma do Chaves e Chespirito">
+                </div>
+
+                <div class="highlight-box">
+                    <p class="section-text" style="margin:0;">
+                        <b>Sigam-me os bons!</b> Entre no universo atemporal de <b>Roberto Gómez Bolaños (Chespirito)</b>, o criador da Televisa que conquistou corações em toda a América Latina e no Brasil com o humor inocente e cativante de Chaves e Chapolin Colorado!
+                    </p>
+                </div>
+
+                <!-- SEÇÃO 1: CHESPIRITO E A TELEVISA -->
+                <div class="clearfix">
+                    <!-- DIAGRAMAÇÃO 2: Imagem do Chapolin Colorado (7.jpg) à esquerda -->
+                    <img src="7.jpg" class="float-img-left" alt="O Vermelhinho Chapolin Colorado">
+
+                    <div class="section-title">
+                        <img src="1000132932.gif" class="pokeball-bullet" alt="*"> O GÊNIO CHESPIRITO E O IMPÉRIO TELEVISA
+                    </div>
+                    <p class="section-text">
+                        A história deste fenômeno comecou no México graças ao talento impar de <b>Roberto Gómez Bolaños</b>, apelidado carinhosamente de <i>"Chespirito"</i> (uma aportuguesamento de "Pequeno Shakespeare" devido à sua brilhante habilidade de escrita). Em parceria com a produtora e emissora <b>Televisa</b>, Bolaños revolucionou a televisão latino-americana nos anos 70.
+                    </p>
+                    <p class="section-text">
+                        Sua obra atravessou fronteiras de maneira avassaladora. No Brasil, transmitido pelo SBT por décadas, <i>Chaves</i> (El Chavo del Ocho) e <i>Chapolin Colorado</i> (El Chapulín Colorado) se transformaram em verdadeiros patrimônios culturais. O humor simples, humanizado e comovente conquistou gerações inteiras no Brasil, México, Argentina, Colômbia e por toda a América Latina, tornando-se uma febre imparável em revistas em quadrinhos (gibis), produtos escolares, desenhos animados e séries de TV.
+                    </p>
+                </div>
+
+                <!-- SEÇÃO 2: A EVOLUÇÃO NOS GAMES (RPG E CAMPANHA CONTRA VAMPIROS) -->
+                <div class="clearfix" style="margin-top: 20px;">
+                    <!-- DIAGRAMAÇÃO 3: Imagem dos Vilões do Chapolin (9.jpg) à direita -->
+                    <img src="3.jpg" class="float-img-right" alt="Os Vilões do Chapolin Colorado">
+
+                    <div class="section-title">
+                        <img src="1000132932.gif" class="pokeball-bullet" alt="*"> A ERA DOS GAMES: RPG, NES, SNES E MEGA DRIVE
+                    </div>
+                    <p class="section-text">
+                        O universo do Chapolin e do Chaves possui uma dinâmica perfeita para os videogames! Nos consoles clássicos como **NES (8-bit)**, **Super Nintendo (SNES)** e **Mega Drive (16-bit)**, a estrutura dos episódios parecia um autêntico **RPG de ação e campanha**.
+                    </p>
+                    <p class="section-text">
+                        O Chapolin Colorado atuava exatamente como o herói de uma grande jornada RPG: chamado por socorro, ele utilizava seus lendários "equipamentos mágicos" como a <i>Marreta Bionica</i>, as <i>Pílulas de Polegarina</i> e a <i>Cornucópia da Buzina Paralisadora</i>.
+                    </p>
+                    <p class="section-text">
+                        As sagas antológicas do seriado — como o arrepiante confronto no castelo do **Vampiro**, as mansões mal-assombradas, os piratas como Alma Negra e gangues perigosas como Poucas Trancas e Quase Nada — funcionavam como fases de campanha contra chefões lendários em jogos de aventura e exploração!
+                    </p>
+                </div>
+
+                <!-- SEÇÃO 3: A FEBRE DAS ROMS TRADUZIDAS E HACKS NO NES -->
+                <div class="section-title">
+                    <img src="1000132932.gif" class="pokeball-bullet" alt="*"> A FEBRE DAS ROMS E O JOGO TRADUZIDO POR FÃS
+                </div>
+
+                <div class="subsection-title">O Chapolin no NES e a Comunidade Hack</div>
+                <p class="section-text">
+                    Assim como aconteceu com os jogos de anime nos anos 90, a internet viu nascer uma verdadeira febre: **jogos do Chaves e Chapolin modificados (Hack ROMs) e traduzidos por fãs**. Grupos de desenvolvedores independentes pegavam jogos clássicos de plataforma do NES e modificavam os *sprites* gráficos, transformando o protagonista no herói de roupa vermelha e amarela!
+                </p>
+
+                <div class="subsection-title">Como o Seriados Reproduziam a Dinâmica de Videogame</div>
+                <p class="section-text">
+                    A própria estrutura narrativa dos episódios de Chespirito parecia antecipar a lógica das telas de videogame e dos desenhos animados de Cartoon:
+                </p>
+                <ul style="color: #e5e7eb; font-size: 15px; line-height: 1.8;">
+                    <li><b>Power-Ups Imédiatos:</b> Engolir a pílula de encolhimento era a exata mecânica do "Cogumelo" do Mario ou das poções de poder nos RPGs de SNES e Mega Drive.</li>
+                    <li><b>Status de Efeito:</b> A Buzina Paralisadora aplicava o status de "Freeze" (paralisia) nos inimigos e vilões.</li>
+                    <li><b>Evolução dos Quadrinhos para os Games:</b> A popularidade das revistas e do desenho animado (Cartoon) facilitou a transição desse universo para jogos interativos, consolidando um legado eterno no coração dos fãs!</li>
+                </ul>
+
+                <br>
+                <div style="text-align: center;">
+                    <a href="index.html" style="color: #eab308; font-family: Arial; font-weight: bold; font-size: 14px;">[ Voltar para a Página Inicial ]</a>
+                </div>
+
+            </td>
+        </tr>
+
+        <!-- RODAPÉ -->
+        <tr>
+            <td colspan="2" class="footer-cell">
+                <p>&copy; Todos os direitos reservados.</p>
+                <p>Gemini IA ajudou a editar esse conteúdo.</p>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
+```
