@@ -1,0 +1,322 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cavaleiros do Zodíaco - Saint Seiya Nostalgia!</title>
+    <style>
+        /* CSS Vintage Estilizado - Anos 90 Elegante (Tema Santuário / Zodíaco) */
+        body {
+            background-color: #0d0e15;
+            background-image: radial-gradient(#1e2238 1px, transparent 0);
+            background-size: 16px 16px;
+            color: #d1d5db;
+            font-family: "Times New Roman", Times, serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Container central estilo FrontPage */
+        .main-table {
+            width: 100%;
+            max-width: 950px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #11121c;
+            border: 3px double #d4af37;
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Cabeçalho */
+        .header-cell {
+            background: linear-gradient(180deg, #1b1c30 0%, #0a0b12 100%);
+            border-bottom: 2px solid #d4af37;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header-title {
+            color: #f3e5ab;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 26px;
+            font-weight: bold;
+            text-shadow: 2px 2px #000, 0 0 8px rgba(212, 175, 55, 0.6);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .marquee-container {
+            background-color: #000;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            color: #ffcc00;
+            font-family: "Courier New", monospace;
+            font-size: 14px;
+            padding: 4px;
+        }
+
+        /* Layout de colunas */
+        .nav-cell {
+            width: 220px;
+            vertical-align: top;
+            background-color: #161726;
+            border-right: 2px solid #282a40;
+            padding: 15px;
+        }
+
+        .content-cell {
+            vertical-align: top;
+            padding: 25px;
+            background-color: #12131f;
+        }
+
+        /* Menu de Navegação Esquerdo */
+        .menu-title {
+            color: #d4af37;
+            font-family: "Courier New", monospace;
+            font-size: 16px;
+            border-bottom: 1px dashed #d4af37;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-list a {
+            color: #93c5fd;
+            text-decoration: none;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            transition: color 0.2s;
+        }
+
+        .nav-list a:hover {
+            color: #ffff00;
+            text-decoration: underline;
+        }
+
+        .pokeball-bullet {
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+        }
+
+        /* Estilos da Seção CDZ */
+        .section-title {
+            color: #ffcc00;
+            font-family: "Courier New", monospace;
+            font-size: 20px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #e5e7eb;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            border: 1px solid #374151;
+            background-color: #181a29;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #d4af37;
+        }
+
+        /* Estilos de Imagens Diagramadas */
+        .image-banner {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-banner img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 10px rgba(0,0,0,0.8);
+            background-color: #000;
+        }
+
+        .float-img-right {
+            float: right;
+            margin: 0 0 15px 15px;
+            max-width: 220px;
+            border: 2px solid #d4af37;
+            box-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+        }
+
+        .float-img-left {
+            float: left;
+            margin: 0 15px 15px 0;
+            max-width: 220px;
+            border: 2px solid #d4af37;
+            box-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Rodapé */
+        .footer-cell {
+            background-color: #0a0b12;
+            border-top: 2px solid #282a40;
+            text-align: center;
+            padding: 15px;
+            font-size: 13px;
+            color: #9ca3af;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer-cell a {
+            color: #d4af37;
+        }
+    </style>
+</head>
+<body>
+
+    <table class="main-table">
+        <!-- CABEÇALHO -->
+        <tr>
+            <td colspan="2" class="header-cell">
+                <h1 class="header-title">*** CAVALEIROS DO ZODÍACO - SAINT SEIYA ***</h1>
+            </td>
+        </tr>
+
+        <!-- MARQUEE -->
+        <tr>
+            <td colspan="2" class="marquee-container">
+                <marquee scrollamount="4" behavior="scroll" direction="left">
+                    Eleve o seu Cosmo ao 7º Sentido! Saiba tudo sobre Masami Kurumada, o clássico jogo de NES/Famicom traduzido por fãs e a febre das Doze Casas!
+                </marquee>
+            </td>
+        </tr>
+
+        <!-- CORPO PRINCIPAL -->
+        <tr>
+            <!-- MENU LATERAL ESQUERDO -->
+            <td class="nav-cell">
+                <div class="menu-title">Navegação</div>
+                <ul class="nav-list">
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="index.html">Página Inicial</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="pokemon.html">Pokémon</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="cdz.html"><b>Cavaleiros do Zodíaco</b></a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="dragonball.html">Dragon Ball</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="chaves_chapolin.html">Chaves e Chapolin</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="anarquia.html">Anarquia</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="hacker.html">Hacker</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="downloads.html">Downloads</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="emuladores.html">Emuladores</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="roms.html">Roms</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="detonados.html">Detonados</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="codigos_fonte.html">Códigos Fonte</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="delphi.html">Delphi</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="ia.html">Inteligência Artificial</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="fotos.html">Fotos</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="videos.html">Vídeos</a></li>
+                </ul>
+            </td>
+
+            <!-- CONTEÚDO DA PÁGINA CDZ -->
+            <td class="content-cell">
+
+                <!-- DIAGRAMAÇÃO 1: Imagem de Todos os Cavaleiros no Topo -->
+                <div class="image-banner">
+                    <img src="1.jpg" alt="Todos os Cavaleiros do Zodíaco">
+                </div>
+
+                <div class="highlight-box">
+                    <p class="section-text" style="margin:0;">
+                        <b>Bem-vindo à área do Santuário!</b> Aqui prestamos homenagem a uma das maiores lendas dos animes no Brasil. Relembre o criador Masami Kurumada, as batalhas lendárias e o RPG épico de NES que marcou a época dos emuladores!
+                    </p>
+                </div>
+
+                <!-- SEÇÃO 1: Criador e Origem -->
+                <div class="clearfix">
+                    <!-- DIAGRAMAÇÃO 3: Imagem da Deusa Atena à direita -->
+                    <img src="3.jpg" class="float-img-right" alt="Deusa Atena (Saori Kido)">
+
+                    <div class="section-title">
+                        <img src="1000132932.gif" class="pokeball-bullet" alt="*"> A Origem: Masami Kurumada e o Fenômeno
+                    </div>
+                    <p class="section-text">
+                        Criado pelo mestre <b>Masami Kurumada</b> em 1986 na famosa revista <i>Weekly Shōnen Jump</i>, <b>Saint Seiya</b> (Os Cavaleiros do Zodíaco) revolucionou o gênero de ação ao misturar mitologia grega, constelações astronômicas e armaduras de metal reluzentes.
+                    </p>
+                    <p class="section-text">
+                        Produzido pela <b>Toei Animation</b>, o anime tornou-se uma febre avassaladora no Brasil a partir de 1994, exibido pela inesquecível <i>Rede Manchete</i>. A saga da Guerra Galáctica até a travessia das Doze Casas para salvar a Deusa <b>Atena</b> uniu milhões de fãs diante da TV todas as tardes.
+                    </p>
+                </div>
+
+                <!-- SEÇÃO 2: O Jogo de NES e Traduções de Fãs -->
+                <div class="clearfix" style="margin-top: 20px;">
+                    <!-- DIAGRAMAÇÃO 2: Imagem do Ikki de Fênix à esquerda -->
+                    <img src="2.jpg" class="float-img-left" alt="Ikki de Fênix">
+
+                    <div class="section-title">
+                        <img src="1000132932.gif" class="pokeball-bullet" alt="*"> O RPG de NES e a Febre das ROMs Traduzidas
+                    </div>
+                    <p class="section-text">
+                        Nos anos 80 e 90, a Bandai lançou para o Nintendo Famicom/NES o jogo <b>Saint Seiya: Ougon Densetsu</b> (A Lenda dos Cavaleiros de Ouro). Por muitos anos, esse título parecia inacessível por ter sido lançado oficialmente apenas em japonês.
+                    </p>
+                    <p class="section-text">
+                        Com a chegada dos emuladores de NES (como o lendário <i>Nesticle</i>) nos anos 90, os grupos de <b>Fan Translation</b> (tradução feita por fãs na internet) fizeram história! Eles aplicaram *patches* em português na ROM original, permitindo que a comunidade finalmente entendesse a história, os menus de atributos de Cosmo e as falas dos Cavaleiros de Ouro.
+                    </p>
+                </div>
+
+                <!-- SEÇÃO 3: Fidelidade RPG vs Anime -->
+                <div class="section-title">
+                    <img src="1000132932.gif" class="pokeball-bullet" alt="*"> A Fidelidade entre o Game de NES e o Anime
+                </div>
+                <p class="section-text">
+                    O jogo de NES foi um dos primeiros a fundir fases de plataforma em rolagem lateral com um sistema completo de <b>RPG por turnos</b> durante as grandes lutas de chefes:
+                </p>
+
+                <ul style="color: #e5e7eb; font-size: 15px; line-height: 1.8;">
+                    <li><b>Gerenciamento de Cosmo:</b> Assim como na série animada, onde o cavaleiro precisa queimar sua energia vital, no jogo você precisa distribuir pontos de Cosmo para ataque e defesa a cada turno. Sem Cosmo, seus golpes não causam dano!</li>
+                    <li><b>Alcançando o 7º Sentido:</b> Durante o confronto com os Cavaleiros de Ouro no Santuário, o jogador é forçado a despertar o Sétimo Sentido para igualar seu poder ao dos adversários mais fortes.</li>
+                    <li><b>Escolha do Cavaleiro Certo:</b> Igualzinho ao anime, você pode escolher qual Cavaleiro de Bronze (Seiya, Shiryu, Hyoga, Shun ou Ikki) enviará para cada batalha nas Doze Casas, respeitando a narrativa do seriado!</li>
+                </ul>
+
+                <br>
+                <div style="text-align: center;">
+                    <a href="index.html" style="color: #d4af37; font-family: Arial; font-weight: bold; font-size: 14px;">[ Voltar para a Página Inicial ]</a>
+                </div>
+
+            </td>
+        </tr>
+
+        <!-- RODAPÉ -->
+        <tr>
+            <td colspan="2" class="footer-cell">
+                <p>&copy; Todos os direitos reservados.</p>
+                <p>Gemini IA ajudou a editar esse conteúdo.</p>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
+```
