@@ -1,0 +1,361 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball Z - Guerreiros Z Nostalgia!</title>
+    <style>
+        /* CSS Vintage Estilizado - Anos 90 Elegante (Tema Dragon Ball Z / Ki) */
+        body {
+            background-color: #181109;
+            background-image: radial-gradient(#3a230d 1px, transparent 0);
+            background-size: 16px 16px;
+            color: #d1d5db;
+            font-family: "Times New Roman", Times, serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Container central estilo FrontPage */
+        .main-table {
+            width: 100%;
+            max-width: 950px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #120d07;
+            border: 3px double #f59e0b;
+            box-shadow: 0 0 18px rgba(245, 158, 11, 0.25);
+        }
+
+        /* Cabeçalho */
+        .header-cell {
+            background: linear-gradient(180deg, #3d1c06 0%, #120902 100%);
+            border-bottom: 2px solid #f59e0b;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header-title {
+            color: #fef08a;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 26px;
+            font-weight: bold;
+            text-shadow: 2px 2px #000, 0 0 10px rgba(245, 158, 11, 0.6);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .marquee-container {
+            background-color: #000;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            color: #fbbf24;
+            font-family: "Courier New", monospace;
+            font-size: 14px;
+            padding: 4px;
+        }
+
+        /* Layout de colunas */
+        .nav-cell {
+            width: 220px;
+            vertical-align: top;
+            background-color: #1a130c;
+            border-right: 2px solid #332011;
+            padding: 15px;
+        }
+
+        .content-cell {
+            vertical-align: top;
+            padding: 25px;
+            background-color: #140e08;
+        }
+
+        /* Menu de Navegação Esquerdo */
+        .menu-title {
+            color: #f59e0b;
+            font-family: "Courier New", monospace;
+            font-size: 16px;
+            border-bottom: 1px dashed #f59e0b;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-list a {
+            color: #93c5fd;
+            text-decoration: none;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            transition: color 0.2s;
+        }
+
+        .nav-list a:hover {
+            color: #ffff00;
+            text-decoration: underline;
+        }
+
+        .pokeball-bullet {
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+        }
+
+        /* Estilos da Seção DBZ */
+        .section-title {
+            color: #fbbf24;
+            font-family: "Courier New", monospace;
+            font-size: 20px;
+            border-bottom: 2px solid #f59e0b;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subsection-title {
+            color: #f59e0b;
+            font-family: "Courier New", monospace;
+            font-size: 17px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            border-left: 3px solid #f59e0b;
+            padding-left: 8px;
+        }
+
+        .section-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #e5e7eb;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            border: 1px solid #45290e;
+            background-color: #1f140a;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #f59e0b;
+        }
+
+        /* Estilos de Imagens Diagramadas */
+        .image-banner {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-banner img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #f59e0b;
+            box-shadow: 0 0 12px rgba(0,0,0,0.8);
+            background-color: #000;
+        }
+
+        .float-img-right {
+            float: right;
+            margin: 0 0 15px 15px;
+            max-width: 230px;
+            border: 2px solid #f59e0b;
+            box-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+
+        .float-img-left {
+            float: left;
+            margin: 0 15px 15px 0;
+            max-width: 230px;
+            border: 2px solid #f59e0b;
+            box-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Rodapé */
+        .footer-cell {
+            background-color: #0c0804;
+            border-top: 2px solid #332011;
+            text-align: center;
+            padding: 15px;
+            font-size: 13px;
+            color: #9ca3af;
+            font-family: Arial, sans-serif;
+        }
+
+        .footer-cell a {
+            color: #f59e0b;
+        }
+    </style>
+</head>
+<body>
+
+    <table class="main-table">
+        <!-- CABEÇALHO -->
+        <tr>
+            <td colspan="2" class="header-cell">
+                <h1 class="header-title">*** DRAGON BALL & DRAGON BALL Z ***</h1>
+            </td>
+        </tr>
+
+        <!-- MARQUEE -->
+        <tr>
+            <td colspan="2" class="marquee-container">
+                <marquee scrollamount="4" behavior="scroll" direction="left">
+                    Eleve o seu Ki ao máximo! Descubra a obra-prima de Akira Toriyama, a saga das Esferas do Dragão e a evolução dos games no NES, SNES, Mega Drive e PlayStation!
+                </marquee>
+            </td>
+        </tr>
+
+        <!-- CORPO PRINCIPAL -->
+        <tr>
+            <!-- MENU LATERAL ESQUERDO -->
+            <td class="nav-cell">
+                <div class="menu-title">Navegação</div>
+                <ul class="nav-list">
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="index.html">Página Inicial</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="pokemon.html">Pokémon</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="cdz.html">Cavaleiros do Zodíaco</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="dragonball.html"><b>Dragon Ball</b></a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="chaves_chapolin.html">Chaves e Chapolin</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="anarquia.html">Anarquia</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="hacker.html">Hacker</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="downloads.html">Downloads</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="emuladores.html">Emuladores</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="roms.html">Roms</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="detonados.html">Detonados</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="codigos_fonte.html">Códigos Fonte</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="delphi.html">Delphi</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="ia.html">Inteligência Artificial</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="fotos.html">Fotos</a></li>
+                    <li><img src="1000132932.gif" class="pokeball-bullet" alt="*"><a href="videos.html">Vídeos</a></li>
+                </ul>
+            </td>
+
+            <!-- CONTEÚDO DA PÁGINA DBZ -->
+            <td class="content-cell">
+
+                <!-- DIAGRAMAÇÃO 1: Imagem do Son Goku (4.jpg) no Topo -->
+                <div class="image-banner">
+                    <img src="1.jpg" alt="Son Goku - O Herói de Dragon Ball Z">
+                </div>
+
+                <div class="highlight-box">
+                    <p class="section-text" style="margin:0;">
+                        <b>Bem-vindo ao Universo Dragon Ball!</b> Conheça a jornada épica criada por Akira Toriyama, o fenômeno mundial do anime e a evolução dos videogames que marcaram gerações de fãs!
+                    </p>
+                </div>
+
+                <!-- SEÇÃO 1: A ORIGEM E A HISTÓRIA DE DRAGON BALL -->
+                <div class="clearfix">
+                    <!-- DIAGRAMAÇÃO 2: Imagem do Lado do Bem (5.jpg) à esquerda -->
+                    <img src="2.jpg" class="float-img-left" alt="Guerreiros Z - O Lado do Bem">
+
+                    <div class="section-title">
+                        <img src="1000132932.gif" class="pokeball-bullet" alt="*"> A CRIAÇÃO E A LENDA
+                    </div>
+                    <p class="section-text">
+                        <b>DRAGON BALL</b> nasceu em 1984 pelas mãos do mestre <b>Akira Toriyama</b> e publicado pela editora <i>Shueisha</i> na famosa revista weekly <i>Shonen Jump</i>. A publicação contava com poucas páginas semanais de suas histórias, mas logo se converteu em série de televisão produzida pela <b>Toei Animation</b>, alcançando a liderança indiscutível de audiência no Japão por mais de uma década.
+                    </p>
+                    <p class="section-text">
+                        O sucesso foi tamanho que Toriyama deu sequência às aventuras do garoto com rabo de macaco com a fase <b>DRAGON BALL Z</b>, que conquistou não só o Japão, mas também a Europa, os EUA e a América Latina (especialmente no Brasil).
+                    </p>
+                    <p class="section-text">
+                        O protagonista é <b>GOKU</b>, criado longe da civilização por seu avô adotivo Son Gohan, que o instruiu nas artes marciais. A história inspira-se no clássico da literatura chinesa <i>Jornada ao Oeste</i> e na lenda do Rei Macaco, <i>Sun Wukong</i>. Em suas primeiras aventuras, Goku descobre a existência das sete Esferas do Dragão, capazes de realizar qualquer desejo a quem as reunir e invocar o deus dragão <b>Shenlong</b>.
+                    </p>
+                </div>
+
+                <!-- SEÇÃO 2: A SAGA Z -->
+                <div class="clearfix" style="margin-top: 20px;">
+                    <!-- DIAGRAMAÇÃO 3: Imagem dos Vilões (6.jpg) à direita -->
+                    <img src="3.jpg" class="float-img-right" alt="Os Vilões de Dragon Ball Z">
+
+                    <div class="section-title">
+                        <img src="1000132932.gif" class="pokeball-bullet" alt="*"> DRAGON BALL Z E A EVOLUÇÃO
+                    </div>
+                    <p class="section-text">
+                        <b>DRAGON BALL Z</b> narra a vida adulta de Goku, a busca contínua pelas esferas e seu combate contra ameaças cósmicas, começando pela temível raça dos <b>Sayajins</b>. Após a destruição de seu planeta natal, guerreiros sobreviventes como Raditz, Nappa e o príncipe Vegeta chegam à Terra em busca de conquista e batalhas mortais.
+                    </p>
+                    <p class="section-text">
+                        O universo da série expandiu-se com sagas memoráveis contra imperadores espaciais (Freeza), androides e bio-organismos do futuro (Cell) e demônios misticos (Majin Boo). O protagonista casa-se, torna-se pai de dois filhos (Gohan e Goten), morre, ressuscita, ganha netos e alcança transformações lendárias como o lendário <b>Super Sayajin</b>.
+                    </p>
+                    <p class="section-text">
+                        Além dos quase 600 episódios que somam todas as fases da animação na TV e milhares de páginas em mangá, a franquia expandiu-se para o cinema, produtos colecionáveis e uma rica história nos videogames.
+                    </p>
+                </div>
+
+                <!-- SEÇÃO 3: A EVOLUÇÃO NOS GAMES E A FEBRE DOS EMULADORES -->
+                <div class="section-title">
+                    <img src="1000132932.gif" class="pokeball-bullet" alt="*"> A TRAJETÓRIA NOS VIDEOGAMES (NES AO PLAYSTATION)
+                </div>
+
+                <div class="subsection-title">A Era NES (Famicom) e o Sistema de RPG por Cartas</div>
+                <p class="section-text">
+                    Nos consoles de 8-bits da Nintendo (NES/Famicom), Dragon Ball ganhou títulos lendários como <i>Dragon Ball Z: Kyoushou! Sayajin</i> e <i>Dragon Ball Z II: Gekishin Freeza</i>. Os jogos usavam um inovador e desafiador **sistema de RPG baseado em cartas**, onde os pontos das cartas determinavam o ataque, a defesa e o tipo de golpe executado pelos Guerreiros Z.
+                </p>
+
+                <div class="subsection-title">A Febre das ROMs Traduzidas por Fãs</div>
+                <p class="section-text">
+                    Como esses RPGs de NES e SNES nunca haviam sido lançados oficialmente no Ocidente, surgiu na internet dos anos 90 uma verdadeira revolução: as **ROMs traduzidas por grupos de fãs (Fan Translation)**. Através de emuladores para PC (como NESticle e ZSNES), fãs brasileiros e mundiais puderam finalmente jogar e compreender a história dos jogos do Goku traduzidos do japonês para o inglês e português. Foi uma febre gigantesca que espalhou ainda mais a paixão por DBZ na rede!
+                </p>
+
+                <div class="subsection-title">Super Nintendo (SNES) e Mega Drive: A Inovação das Lutas Verso (1v1)</div>
+                <p class="section-text">
+                    No SNES e no Mega Drive, a franquia brilhou tanto nos RPGs clássicos como <i>Dragon Ball Z: Legend of the Super Saiyan</i> quanto na revolucionária série de luta 1v1 **Super Butouden**. Esses jogos introduziram a inédita **tela dividida (split-screen)**, permitindo batalhas em arenas gigantescas onde os lutadores podiam voar, acumular *Ki* e soltar *Kamehamehas* gigantescos que cortavam a tela ao meio!
+                </p>
+
+                <div class="subsection-title">PlayStation: Campanha, 3D e Lutas Épicas</div>
+                <p class="section-text">
+                    Na era 32-bits do PlayStation 1, títulos como <i>Dragon Ball Z: Ultimate Battle 22</i> e <i>Dragon Ball GT: Final Bout</i> trouxeram gráficos em 3D, aberturas em anime de altíssima qualidade, modos de campanha abrangentes e combates diretos x1. <i>Final Bout</i> em especial virou febre nas locadoras pelo seu sistema de disputa de poderes no ar e transformações em tempo real.
+                </p>
+
+                <!-- SEÇÃO 4: A SINTONIA PERFEITA ENTRE O ANIME E O GAME -->
+                <div class="section-title">
+                    <img src="1000132932.gif" class="pokeball-bullet" alt="*"> COMO O ANIME REPRODUZIU A DINÂMICA DOS RPGS</div>
+                <p class="section-text">
+                    Existe uma simbiose perfeita entre a estrutura de Dragon Ball Z e os videogames de RPG. O próprio anime reproduzia fielmente os conceitos dos jogos:
+                </p>
+                <ul style="color: #e5e7eb; font-size: 15px; line-height: 1.8;">
+                    <li><b>Níveis de Poder (Kiri / Ki):</b> A constante medição de poderes através dos *Scouters* (rastreadores) parecia o cálculo direto de HP e atributos dos RPGs.</li>
+                    <li><b>Barra de Energia e Carga de Ki:</b> O tempo gasto pelos personagens gritando e concentrando energia no anime correspondia exatamente ao comando de carregar barra de MP/Ki antes de disparar um golpe especial nos games.</li>
+                    <li><b>Combates por Etapas (Turnos e Evolução):</b> As lutas contra vilões principais como Freeza e Cell duravam dezenas de episódios, divididas em "fases" e transformações que pareciam verdadeiras batalhas de chefões em jogos de campanha.</li>
+                </ul>
+
+                <br>
+                <div style="text-align: center;">
+                    <a href="index.html" style="color: #f59e0b; font-family: Arial; font-weight: bold; font-size: 14px;">[ Voltar para a Página Inicial ]</a>
+                </div>
+
+            </td>
+        </tr>
+
+        <!-- RODAPÉ -->
+        <tr>
+            <td colspan="2" class="footer-cell">
+                <p>&copy; Todos os direitos reservados.</p>
+                <p>Gemini IA ajudou a editar esse conteúdo.</p>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
+```
